@@ -1,74 +1,103 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
+  <head>
+    <meta charset="utf-8" />
 
-        <title>start from nothing!</title>
-        <meta name="description" content="start from nothing!" />
+    <title>start from nothing!</title>
+    <meta name="description" content="start from nothing!" />
 
-        <link href="/lib/dom-manipulation/mocha/mocha.css" rel="stylesheet" />
-        <script src="/lib/dom-manipulation/mocha/mocha.js"></script>
-        <script src="/lib/dom-manipulation/assert.js"></script>
+    <link href="/lib/dom-manipulation/mocha/mocha.css" rel="stylesheet" />
+    <script src="/lib/dom-manipulation/mocha/mocha.js"></script>
+    <script src="/lib/dom-manipulation/assert.js"></script>
 
-        <script src="/lib/dom-manipulation/test-the-dom.js"></script>
+    <script src="/lib/dom-manipulation/test-the-dom.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="../style.css" />
-    </head>
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+  </head>
 
-    <body>
-        <header>
-            <h2>start from nothing!</h2>
-        </header>
+  <body>
+    <header>
+      <h2>start from nothing!</h2>
+    </header>
 
-        <section class="things-to-study">
-            <div id="side to inspect" class="exercise-output">
-                <div id="expected">
-                    <h2>a list of things</h2>
-                    <ul start="0">
-                        <li>robots</li>
-                        <li>solar systems</li>
-                        <li>
-                            <a
-                                href="https://www.badgerbadgerbadger.com"
-                                expected="_blank"
-                                >learn about badgers</a
-                            >
-                        </li>
-                        <li>oil</li>
-                    </ul>
-                </div>
+    <section class="things-to-study">
+      <div id="side to inspect" class="exercise-output">
+        <div id="expected">
+          <h2>a list of things</h2>
+          <ul start="0">
+            <li>robots</li>
+            <li>solar systems</li>
+            <li>
+              <a href="https://www.badgerbadgerbadger.com" expected="_blank"
+                >learn about badgers</a
+              >
+            </li>
+            <li>oil</li>
+          </ul>
+        </div>
 
-                <div id="actual"></div>
+        <div id="actual"></div>
 
-                <script id="dom-manipulation-script">
-                    'use strict';
-                    debugger;
+        <script id="dom-manipulation-script">
+          "use strict";
+          debugger;
+          const actual = document.getElementById("actual");
 
-                    // write me! (... without using cloneNode, that's kind of cheating)
-                </script>
-            </div>
+          //adding h2
+          const h2 = document.createElement("h2");
+          h2.innerText = "a list of things";
 
-            <div id="mocha" class="mocha-output"></div>
+          //creating ul
+          const ul = document.createElement("ul");
+          // ul.start = 0;
 
-            <script id="run the tests!">
-                mocha.setup({
-                    ui: 'bdd',
-                });
-                compareElements.attributesToTest = [
-                    'nodeName',
-                    'innerText',
-                    'href',
-                    'expected',
-                    'children',
-                    'childElementCount',
-                ];
-                compareElements(
-                    document.getElementById('actual'),
-                    document.getElementById('expected'),
-                );
-                mocha.run();
-            </script>
-        </section>
-    </body>
+          //creating li
+          const robots = document.createElement("li");
+          robots.innerText = "robots";
+
+          const solarSystems = document.createElement("li");
+          solarSystems.innerText = "solar systems";
+
+          const learnAboutBadgers = document.createElement("li");
+
+          const learnAboutBadgersLink = document.createElement("a");
+          learnAboutBadgersLink.innerText = "learn about badgers";
+          learnAboutBadgersLink.href = "https://www.badgerbadgerbadger.com";
+          learnAboutBadgersLink.expected = "_blank";
+
+          learnAboutBadgers.append(learnAboutBadgersLink);
+
+          const oil = document.createElement("li");
+          oil.innerText = "oil";
+
+          ul.append(robots, solarSystems, learnAboutBadgers, oil);
+
+          actual.append(h2, ul);
+          // write me! (... without using cloneNode, that's kind of cheating)
+        </script>
+      </div>
+
+      <div id="mocha" class="mocha-output"></div>
+
+      <script id="run the tests!">
+        mocha.setup({
+          ui: "bdd",
+        });
+        compareElements.attributesToTest = [
+          "nodeName",
+          "innerText",
+          "href",
+          "expected",
+          "children",
+          "childElementCount",
+        ];
+        compareElements(
+          document.getElementById("actual"),
+          document.getElementById("expected")
+        );
+        mocha.run();
+      </script>
+    </section>
+  </body>
 </html>
