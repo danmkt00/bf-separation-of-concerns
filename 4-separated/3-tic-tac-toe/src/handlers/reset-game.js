@@ -15,6 +15,9 @@ export const resetGame = () => {
         document.getElementById(id).innerHTML = state.board[id];
     }
 
+    document.getElementById('winner').innerText = '';
+    state.winner = null;
+
     // log action
     console.log('resetting board');
 };
